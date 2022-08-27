@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -46,10 +47,7 @@ namespace ShopRite_IMS
 
         private void FillCombo()
         {
-            
-
-
-
+      
                 Con.Open();
 
                 
@@ -61,16 +59,57 @@ namespace ShopRite_IMS
                 dt.Load(sda);
                 ProdCatcombo.DataSource = dt;
                 ProdCatcombo.ValueMember = "CatName";
-                
+                comboBox2.DataSource = dt;
+                comboBox2.ValueMember = "CatName";
 
 
-                Con.Close();
+
+            Con.Close();
 
 
 
             
            
+
+
+
+
         }
+
+
+
+
+       /* private void FillCombo1()
+        {
+
+
+
+
+            Con.Open();
+
+
+            MySqlCommand cmd = new MySqlCommand("select Catname from productcattable", Con);
+            MySqlDataReader sda;
+            sda = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Catname", typeof(string));
+            dt.Load(sda);
+            comboBox2.DataSource = dt;
+            comboBox2.ValueMember = "CatName";
+
+
+
+            Con.Close();
+
+
+
+
+
+        }*/
+
+
+
+        
         private void populate()
         {
             /*Con.Open();
@@ -238,6 +277,35 @@ namespace ShopRite_IMS
             ProdPrice.Text = DGV2.SelectedRows[0].Cells[3].Value.ToString();
             
             ProdCatcombo.Text = DGV2.SelectedRows[0].Cells[4].Value.ToString();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           /* Con.Open();
+
+            //string sqlStatement = $"INSERT INTO `productcattable`( `CatId`, `CatName`, `CatDesc`) VALUES ('{this.CatId.Text}','{this.Catname.Text}','{this.Catdesc.Text}')";
+            string sqlStatement = "SELECT * shopritedb.producttable where ProdCat='" + ProdCatcombo.SelectedValue + "';";
+            MySqlDataAdapter sda = new MySqlDataAdapter(sqlStatement, Con);
+            MySqlCommandBuilder builder = new MySqlCommandBuilder(sda);
+            var ds = new DataSet();
+            sda.Fill(ds);
+            DGV2.DataSource = ds.Tables[0];
+            
+            Con.Close();*/
+
+        }
+
+        private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            Con.Open();
+            string query = "select * from producttable where ProdCat='"+ comboBox2.SelectedValue.ToString()+"';";
+            MySqlDataAdapter sda = new MySqlDataAdapter(query, Con);
+            MySqlCommandBuilder builder = new MySqlCommandBuilder(sda);
+        
+            var ds = new DataSet();
+            sda.Fill(ds);
+            DGV2.DataSource = ds.Tables[0];
+            Con.Close();
         }
     }
 }

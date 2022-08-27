@@ -155,6 +155,8 @@
             this.comboBox2.Sorted = true;
             this.comboBox2.TabIndex = 14;
             this.comboBox2.Text = "Select Category";
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.comboBox2.SelectionChangeCommitted += new System.EventHandler(this.comboBox2_SelectionChangeCommitted);
             // 
             // button4
             // 

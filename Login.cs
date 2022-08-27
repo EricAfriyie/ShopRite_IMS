@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -140,6 +141,7 @@ namespace ShopRite_IMS
             this.button1.TabIndex = 3;
             this.button1.Text = "LOGIN";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // logPassword
             // 
@@ -287,6 +289,60 @@ namespace ShopRite_IMS
         private void label4_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(logUsername.Text =="" || logPassword.Text == "")
+            {
+                MessageBox.Show("Enter Username and Password ");
+            }
+            else
+            {
+                if (comboBox1.SelectedIndex > -1)
+                {
+
+                    if (comboBox1.SelectedItem.ToString() == "Admin")
+                    {
+                        if (this.logUsername.Text == "Admin" && this.logPassword.Text == "Admin")
+                        {
+                            ManageProducts prod = new ManageProducts();
+                            prod.Show();
+                            this.Hide();
+
+                        }
+
+
+
+
+
+                        else
+                        {
+                            MessageBox.Show("If You are the Admin, Enter the Correct logins");
+                        }
+                    }
+
+
+                    else
+                    {
+
+
+ 
+                        MessageBox.Show("You are in the Seller Section");
+
+                    }
+
+                }
+
+             
+                else
+                {
+                    MessageBox.Show("Select a Role");
+                }
+
+            }
+        
+
         }
     }
 }

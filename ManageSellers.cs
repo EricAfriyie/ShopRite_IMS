@@ -73,6 +73,11 @@ namespace ShopRite_IMS
 
                 Con.Close();
                 populate();
+                SellerId.Text = "";
+                    this.SellerName.Text = " ";
+                this.SellerAge.Text = "";
+                this.SellerMobile.Text = "";
+                this.SellerPass.Text = "";
 
 
 
@@ -116,6 +121,12 @@ namespace ShopRite_IMS
                     MessageBox.Show("User successfuly deleted");
                     Con.Close();
                     populate();
+
+                    SellerId.Text = "";
+                    this.SellerName.Text = " ";
+                    this.SellerAge.Text = "";
+                    this.SellerMobile.Text = "";
+                    this.SellerPass.Text = "";
                 }
 
             }
@@ -144,6 +155,12 @@ namespace ShopRite_IMS
                     MessageBox.Show("User successfuly updated");
                     Con.Close();
                     populate();
+
+                    SellerId.Text = "";
+                    this.SellerName.Text = " ";
+                    this.SellerAge.Text = "";
+                    this.SellerMobile.Text = "";
+                    this.SellerPass.Text = "";
                 }
 
             }
