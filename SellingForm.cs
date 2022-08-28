@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -47,9 +47,13 @@ namespace ShopRite_IMS
             DataTable dt = new DataTable();
             dt.Columns.Add("Catname", typeof(string));
             dt.Load(sda);
-            
             comboBox2.ValueMember = "CatName";
             comboBox2.DataSource = dt;
+            
+       
+
+            
+            
 
 
 
@@ -68,7 +72,6 @@ namespace ShopRite_IMS
             string query = "select ProdName,ProdQty from producttable";
             MySqlDataAdapter sda = new MySqlDataAdapter(query, Con);
             MySqlCommandBuilder builder = new MySqlCommandBuilder(sda);
-
             var ds = new DataSet();
             sda.Fill(ds);
             DGV6.DataSource = ds.Tables[0];
@@ -102,6 +105,7 @@ namespace ShopRite_IMS
             populate();
             populatebill();
             FillCombo();
+            Seller1.Text = Login.Sellername;
         }
 
         int flag = 0;
@@ -189,7 +193,7 @@ namespace ShopRite_IMS
 
         private void button3_Click(object sender, EventArgs e)
         {
-            /*populate();*/
+            populate();
         }
 
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
@@ -204,6 +208,26 @@ namespace ShopRite_IMS
             sda.Fill(ds);
             DGV6.DataSource = ds.Tables[0];
             Con.Close();
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            
+            
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+            this.Hide();
+            Login log = new Login();
+            log.Show();
+
+        }
+
+        private void Seller1_Click(object sender, EventArgs e)
+        {
 
         }
 

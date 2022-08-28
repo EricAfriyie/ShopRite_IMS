@@ -173,9 +173,23 @@ namespace ShopRite_IMS
 
         private void button7_Click(object sender, EventArgs e)
         {
-            ManageCategory prod = new ManageCategory();
-            prod.Show();
+            ManageCategory prodcat = new ManageCategory();
+            prodcat.Show();
             this.Hide();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ManageProducts Prod = new ManageProducts();
+            Prod.Show();
+            this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login log = new Login();
+            log.Show();
         }
     }
 }

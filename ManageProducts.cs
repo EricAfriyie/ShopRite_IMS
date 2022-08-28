@@ -205,6 +205,11 @@ namespace ShopRite_IMS
                     MySqlCommand cmd = new MySqlCommand(query, Con);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Product successfuly deleted");
+                    this.ProdId.Text = "";
+                    this.Prodname.Text = "";
+                    this.Prodqty.Text = "";
+                    this.ProdPrice.Text = "";
+                    this.ProdCatcombo.Text = "";
                     Con.Close();
                     populate();
                 }
@@ -236,11 +241,11 @@ namespace ShopRite_IMS
                     MySqlCommand cmd = new MySqlCommand(query, Con);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Product successfuly updated");
-
-
-
-
-                  
+                    this.ProdId.Text = "";
+                    this.Prodname.Text = "";
+                    this.Prodqty.Text = "";
+                    this.ProdPrice.Text = "";
+                    this.ProdCatcombo.Text = "";
 
                     Con.Close();
                     populate();
@@ -306,6 +311,25 @@ namespace ShopRite_IMS
             sda.Fill(ds);
             DGV2.DataSource = ds.Tables[0];
             Con.Close();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ManageSellers cat = new ManageSellers();
+            cat.Show();
+            this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            populate();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login log = new Login();
+            log.Show();
         }
     }
 }

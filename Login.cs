@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -50,7 +52,7 @@ namespace ShopRite_IMS
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.guna2CheckBox1);
@@ -59,42 +61,43 @@ namespace ShopRite_IMS
             this.panel1.Controls.Add(this.logPassword);
             this.panel1.Controls.Add(this.logUsername);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(320, 227);
+            this.panel1.Location = new System.Drawing.Point(190, 180);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(313, 464);
+            this.panel1.Size = new System.Drawing.Size(647, 552);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // comboBox1
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.comboBox1.BackColor = System.Drawing.Color.Crimson;
             this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox1.ForeColor = System.Drawing.Color.White;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Admin",
             "Attendant"});
-            this.comboBox1.Location = new System.Drawing.Point(45, 303);
+            this.comboBox1.Location = new System.Drawing.Point(182, 290);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(231, 24);
+            this.comboBox1.Size = new System.Drawing.Size(250, 24);
             this.comboBox1.Sorted = true;
             this.comboBox1.TabIndex = 7;
-            this.comboBox1.Text = "UserType";
+            this.comboBox1.Text = "Select User Type";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(96, 70);
+            this.pictureBox1.Location = new System.Drawing.Point(244, 49);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(135, 92);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
             // guna2CheckBox1
             // 
             this.guna2CheckBox1.AutoSize = true;
+            this.guna2CheckBox1.BackColor = System.Drawing.Color.Transparent;
             this.guna2CheckBox1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2CheckBox1.CheckedState.BorderRadius = 0;
             this.guna2CheckBox1.CheckedState.BorderThickness = 0;
@@ -102,8 +105,8 @@ namespace ShopRite_IMS
             this.guna2CheckBox1.CheckMarkColor = System.Drawing.Color.Black;
             this.guna2CheckBox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.guna2CheckBox1.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2CheckBox1.ForeColor = System.Drawing.Color.Crimson;
-            this.guna2CheckBox1.Location = new System.Drawing.Point(134, 409);
+            this.guna2CheckBox1.ForeColor = System.Drawing.Color.Firebrick;
+            this.guna2CheckBox1.Location = new System.Drawing.Point(260, 423);
             this.guna2CheckBox1.Name = "guna2CheckBox1";
             this.guna2CheckBox1.Size = new System.Drawing.Size(153, 23);
             this.guna2CheckBox1.TabIndex = 5;
@@ -114,14 +117,15 @@ namespace ShopRite_IMS
             this.guna2CheckBox1.UncheckedState.BorderThickness = 0;
             this.guna2CheckBox1.UncheckedState.FillColor = System.Drawing.Color.White;
             this.guna2CheckBox1.UseMnemonic = false;
+            this.guna2CheckBox1.UseVisualStyleBackColor = false;
             this.guna2CheckBox1.CheckedChanged += new System.EventHandler(this.guna2CheckBox1_CheckedChanged_1);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Crimson;
-            this.label3.Location = new System.Drawing.Point(51, 409);
+            this.label3.ForeColor = System.Drawing.Color.Firebrick;
+            this.label3.Location = new System.Drawing.Point(187, 423);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 19);
             this.label3.TabIndex = 4;
@@ -130,14 +134,14 @@ namespace ShopRite_IMS
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.BackColor = System.Drawing.Color.Crimson;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.button1.Location = new System.Drawing.Point(45, 355);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(182, 340);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(231, 42);
+            this.button1.Size = new System.Drawing.Size(250, 42);
             this.button1.TabIndex = 3;
             this.button1.Text = "LOGIN";
             this.button1.UseVisualStyleBackColor = false;
@@ -146,7 +150,7 @@ namespace ShopRite_IMS
             // logPassword
             // 
             this.logPassword.Animated = true;
-            this.logPassword.BorderColor = System.Drawing.Color.White;
+            this.logPassword.BorderColor = System.Drawing.Color.Crimson;
             this.logPassword.BorderThickness = 3;
             this.logPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.logPassword.DefaultText = "";
@@ -154,27 +158,26 @@ namespace ShopRite_IMS
             this.logPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.logPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.logPassword.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.logPassword.FillColor = System.Drawing.Color.DodgerBlue;
-            this.logPassword.FocusedState.BorderColor = System.Drawing.Color.White;
-            this.logPassword.FocusedState.FillColor = System.Drawing.Color.DodgerBlue;
-            this.logPassword.FocusedState.ForeColor = System.Drawing.Color.White;
+            this.logPassword.FocusedState.BorderColor = System.Drawing.Color.Crimson;
+            this.logPassword.FocusedState.FillColor = System.Drawing.Color.White;
+            this.logPassword.FocusedState.ForeColor = System.Drawing.Color.Crimson;
             this.logPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.logPassword.ForeColor = System.Drawing.Color.White;
+            this.logPassword.ForeColor = System.Drawing.Color.Crimson;
             this.logPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.logPassword.Location = new System.Drawing.Point(45, 224);
+            this.logPassword.Location = new System.Drawing.Point(182, 223);
             this.logPassword.Name = "logPassword";
             this.logPassword.PasswordChar = '*';
-            this.logPassword.PlaceholderForeColor = System.Drawing.Color.White;
+            this.logPassword.PlaceholderForeColor = System.Drawing.Color.Crimson;
             this.logPassword.PlaceholderText = "Password";
             this.logPassword.SelectedText = "";
-            this.logPassword.Size = new System.Drawing.Size(231, 36);
+            this.logPassword.Size = new System.Drawing.Size(250, 36);
             this.logPassword.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.logPassword.TabIndex = 2;
             // 
             // logUsername
             // 
             this.logUsername.Animated = true;
-            this.logUsername.BorderColor = System.Drawing.Color.White;
+            this.logUsername.BorderColor = System.Drawing.Color.Crimson;
             this.logUsername.BorderThickness = 3;
             this.logUsername.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.logUsername.DefaultText = "";
@@ -182,20 +185,19 @@ namespace ShopRite_IMS
             this.logUsername.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.logUsername.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.logUsername.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.logUsername.FillColor = System.Drawing.Color.DodgerBlue;
-            this.logUsername.FocusedState.BorderColor = System.Drawing.Color.White;
-            this.logUsername.FocusedState.FillColor = System.Drawing.Color.DodgerBlue;
-            this.logUsername.FocusedState.ForeColor = System.Drawing.Color.White;
-            this.logUsername.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.logUsername.ForeColor = System.Drawing.Color.White;
+            this.logUsername.FocusedState.BorderColor = System.Drawing.Color.Crimson;
+            this.logUsername.FocusedState.FillColor = System.Drawing.Color.White;
+            this.logUsername.FocusedState.ForeColor = System.Drawing.Color.Crimson;
+            this.logUsername.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logUsername.ForeColor = System.Drawing.Color.Crimson;
             this.logUsername.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.logUsername.Location = new System.Drawing.Point(45, 168);
+            this.logUsername.Location = new System.Drawing.Point(182, 171);
             this.logUsername.Name = "logUsername";
             this.logUsername.PasswordChar = '\0';
-            this.logUsername.PlaceholderForeColor = System.Drawing.Color.White;
+            this.logUsername.PlaceholderForeColor = System.Drawing.Color.Crimson;
             this.logUsername.PlaceholderText = "Username";
             this.logUsername.SelectedText = "";
-            this.logUsername.Size = new System.Drawing.Size(231, 36);
+            this.logUsername.Size = new System.Drawing.Size(250, 36);
             this.logUsername.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             this.logUsername.TabIndex = 1;
             // 
@@ -204,7 +206,7 @@ namespace ShopRite_IMS
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(127, 10);
+            this.label1.Location = new System.Drawing.Point(305, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 38);
             this.label1.TabIndex = 0;
@@ -216,7 +218,7 @@ namespace ShopRite_IMS
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(226, 123);
+            this.label2.Location = new System.Drawing.Point(221, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(642, 38);
             this.label2.TabIndex = 1;
@@ -238,7 +240,7 @@ namespace ShopRite_IMS
             // 
             // Login
             // 
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackColor = System.Drawing.Color.Crimson;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1040, 804);
             this.Controls.Add(this.label4);
@@ -253,6 +255,10 @@ namespace ShopRite_IMS
             this.PerformLayout();
 
         }
+
+        public static string Sellername = "";
+
+        MySqlConnection Con = new MySqlConnection("datasource=localhost;database=shopritedb; username=root;password=;");
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -327,8 +333,43 @@ namespace ShopRite_IMS
                     {
 
 
- 
-                        MessageBox.Show("You are in the Seller Section");
+
+                        //MessageBox.Show("You are in the Seller Section");
+                        Con.Open();
+                        string query = "Select count(8) from attendanttable where Name='"+ logUsername.Text+ "' and Password='"+logPassword.Text + "' ";
+                        MySqlDataAdapter sda = new MySqlDataAdapter(query, Con);
+                        MySqlCommandBuilder builder = new MySqlCommandBuilder(sda);
+
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+
+                        if (dt.Rows[0][0].ToString() == "1")
+                        {
+                            Sellername = logUsername.Text;
+                            SellingForm sell = new SellingForm();
+                            sell.Show();
+                            this.Hide();
+
+                             Con.Close(); 
+
+
+
+                        }
+
+                        else
+                        {
+
+                            MessageBox.Show("Wrong username or password");
+
+
+                        }
+
+                        Con.Close();
+
+
+
+
+
 
                     }
 
